@@ -1,0 +1,54 @@
+import javax.swing.*;
+import java.awt.*;
+
+public class ArbolNavidad extends JPanel {
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g;
+
+        // Fondo
+        g2d.setColor(new Color(30, 30, 50)); // azul oscuro (noche)
+        g2d.fillRect(0, 0, getWidth(), getHeight());
+
+        // Coordenadas base
+        int cx = getWidth() / 2; // centro horizontal
+
+        // --- Capa superior del árbol ---
+        int[] x1 = {cx - 50, cx, cx + 50};
+        int[] y1 = {150, 50, 150};
+
+        // --- Capa del medio ---
+        int[] x2 = {cx - 70, cx, cx + 70};
+        int[] y2 = {200, 100, 200};
+
+        // --- Capa inferior ---
+        int[] x3 = {cx - 90, cx, cx + 90};
+        int[] y3 = {260, 150, 260};
+
+        // --- Tronco ---
+        int trunkWidth = 30;
+        int trunkHeight = 50;
+        int trunkX = cx - trunkWidth / 2;
+        int trunkY = 260;
+
+        // Dibujar triángulos (de arriba a abajo)
+        g2d.setColor(new Color(0, 150, 0)); // verde
+        g2d.fillPolygon(x1, y1, 3);
+        g2d.fillPolygon(x2, y2, 3);
+        g2d.fillPolygon(x3, y3, 3);
+
+        // Tronco
+        g2d.setColor(new Color(101, 67, 33)); // marrón
+        g2d.fillRect(trunkX, trunkY, trunkWidth, trunkHeight);
+    }
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Árbol de Navidad");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(400, 400);
+        frame.add(new ArbolNavidad());
+        frame.setVisible(true);
+    }
+}
